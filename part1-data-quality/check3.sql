@@ -1,4 +1,9 @@
 -- FAILURES: same transaction_id has multiple revenue values across purchase events
+-- PURPOSE: to verify that each purchase has a single, consistent revenue value
+-- PASS: No rows returned
+-- SEVERITY: CRITICAL as conflicting order values cannot be reliably corrected downstream
+
+
 SELECT
   JSON_VALUE(event_data, '$.transaction_id') AS transaction_id,
   COUNT(*) AS purchase_event_count,

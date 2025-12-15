@@ -1,4 +1,9 @@
 -- FAILURES: duplicated transaction_ids in purchase events
+-- PURPOSE: to verify that each transaction is recorded only once in purchase events
+-- PASS: No rows returned
+-- SEVERITY: HIGH as duplicate purchases lead to over-counted orders and inflated revenue
+
+
 SELECT
   JSON_VALUE(event_data, '$.transaction_id') AS transaction_id,
   COUNT(*) AS purchase_event_count,

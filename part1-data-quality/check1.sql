@@ -1,4 +1,10 @@
 -- FAILURES: purchase events missing transaction_id or revenue <= 0 / non-numeric
+-- PURPOSE: to verify that purchase events have necessry fields
+-- PASS: No rows returned 
+-- SEVERITY: CRITICAL as this affects order counts, revenue and AOV
+
+
+
 SELECT
   DATE(timestamp) AS event_date,
   COUNT(*) AS failing_events,
